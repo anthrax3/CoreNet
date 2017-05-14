@@ -1,5 +1,4 @@
-﻿using Mikolo.CoreNet.Profil.Entity.User;
-using System;
+﻿using System;
 
 namespace Mikolo.CoreNet.Base.Entity
 {
@@ -13,11 +12,11 @@ namespace Mikolo.CoreNet.Base.Entity
 
         protected DateTime CreatedOn { get; set; }
 
-        protected User CreatedBy { get; set; }
+        protected Guid CreatedBy { get; set; }
 
         protected DateTime UpdatedOn { get; set; }
 
-        protected User UpdatedBy { get; set; }
+        protected Guid UpdatedBy { get; set; }
 
     }
 }

@@ -1,13 +1,11 @@
-﻿using RestSharp;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json.Linq;
 
 namespace Mikolo.CoreNet.Profil.Service
 {
     public interface IProfileService
     {
-        string GetResponse(string url, string username, string password);
-        string PostRequest(string url, string username, string password, Dictionary<string, string> formdata);
-        string PutRequest(string url, string username, string password, Dictionary<string, string> formdata);
-        string SendRequest(string url, string username, string password, Dictionary<string, string> formdata, Method method);
+        string GetUserUrn(JObject account);
+        void Login(JObject profile, string urn);
+        void Logout();
     }
 }

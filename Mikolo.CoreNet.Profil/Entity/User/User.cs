@@ -4,7 +4,7 @@ namespace Mikolo.CoreNet.Profil.Entity.User
 {
     public class User
     {
-        private Guid UserId;
+        private Guid UserId { get; set; }
 
         private string UserLastName { get; set; }
 
