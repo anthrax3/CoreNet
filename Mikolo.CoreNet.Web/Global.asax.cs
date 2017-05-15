@@ -9,7 +9,7 @@ namespace Mikolo.CoreNet.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            DependencyLoader.LoadDependencies();
+            DependencyConfig.LoadDependencies();
         }
     }
 }

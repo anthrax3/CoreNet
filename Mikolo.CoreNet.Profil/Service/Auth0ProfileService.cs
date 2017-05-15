@@ -8,11 +8,13 @@ namespace Mikolo.CoreNet.Profil.Service
 {
     public class Auth0ProfileService : IProfileService
     {
-        private IRestService RestService;
+        private readonly IRestService _restService;
+
+        private const string BaseUrl = "http://jsonplaceholder.typicode.com";
 
         public Auth0ProfileService(IRestService restService)
         {
-            RestService = restService;
+            _restService = restService;
         }
 
         public string GetUserUrn(JObject account)
@@ -65,9 +67,19 @@ namespace Mikolo.CoreNet.Profil.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error encountered in ProfileService.Logout()", ex, this);
+                Console.WriteLine("Error encountered in ProfileService.Logout()");
                 throw;
             }
+        }
+
+        public string GetUsers()
+        {
+            var requestUrl = BaseUrl + "/users/1";
+            var result = string.Empty;
+
+            result = _restService.GetResponse(requestUrl, "test", "test");
+
+            return result;
         }
     }
 }

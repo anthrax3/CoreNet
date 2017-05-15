@@ -10,19 +10,20 @@ namespace Mikolo.CoreNet.Web.Controllers
 {
     public class DefaultController : Controller
     {
-        private IProfileService ProfileService;
+        private readonly IProfileService _profileService;
 
         public DefaultController(IProfileService profileService)
         {
-            ProfileService = profileService;
+            _profileService = profileService;
         }
         // GET: Default
         public ActionResult Index()
         {
-            // var jObject = new JObject();
-            // jObject.Value<string>("");
-            if (ProfileService != null)
-                ViewBag.Success = "profile service here";
+            var result = string.Empty;
+
+            result = _profileService.GetUsers();
+            ViewBag.Success = result;
+
             return View();
         }
     }

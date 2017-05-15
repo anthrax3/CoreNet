@@ -7,5 +7,6 @@ namespace Mikolo.CoreNet.Profil.Service
         string GetUserUrn(JObject account);
         void Login(JObject profile, string urn);
         void Logout();
+        string GetUsers();
     }
 }

@@ -8,9 +8,9 @@ namespace Mikolo.CoreNet.Base.Engine.Resolver
     public class MvcDependencyResolver : IDependencyResolver
     {
 
-        IDependencyResolver _fallbackResolver;
-        
-        IDependencyResolver _newResolver;
+        private readonly IDependencyResolver _fallbackResolver;
+
+        private readonly IDependencyResolver _newResolver;
 
         public MvcDependencyResolver(IDependencyResolver newResolver, IDependencyResolver fallbackResolver)
         {
@@ -20,28 +20,16 @@ namespace Mikolo.CoreNet.Base.Engine.Resolver
 
         public object GetService(Type serviceType)
         {
-            object result = null;
+            var result = _newResolver.GetService(serviceType);
 
-            result = _newResolver.GetService(serviceType);
-            if (result != null)
-            {
-                return result;
-            }
-
-            return _fallbackResolver.GetService(serviceType);
+            return result ?? _fallbackResolver.GetService(serviceType);
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            IEnumerable<object> result = Enumerable.Empty<object>();
+            var result = _newResolver.GetServices(serviceType);
 
-            result = _newResolver.GetServices(serviceType);
-            if (result.Any())
-            {
-                return result;
-            }
-
-            return _fallbackResolver.GetServices(serviceType);
+            return result.Any() ? result : _fallbackResolver.GetServices(serviceType);
         }
     }
 }
